@@ -1,16 +1,20 @@
-def numOfSubarrays(self, arr: List[int]) -> int:
-    mod, n = 10 ** 9 + 7, len(arr)
-    odd_sum, even_sum, curr_sum, ans = 0, 1, 0, 0
-    for i in arr:
-        curr_sum += i
-        if curr_sum % 2 == 0:
-            odd_sum += 1
-            ans += even_sum % mod
-        else:
-            even_sum += 1
-            ans += odd_sum % mod
-    ans %= mod
-    return ans
+def evenSubarray(nums, k):
+    if not nums:
+        return []
 
+    size = len(nums)
+    nums_str = ''.join([str(x) for x in nums])
+    sset = set()
+    for i in range(size):
+        odds = 0
 
-print(numOfSubarrays([1,2,3,4]))
+        for j in range(i, size):
+            if nums[j] % 2 == 1:
+                odds += 1
+
+            if odds <= k and nums_str[i:j + 1] not in sset:
+                sset.add(nums_str[i:j + 1])
+    return len(sset)
+
+print(evenSubarray([1,2,3,4], 1))
+print(evenSubarray([2,1,2,1,3], 2))
