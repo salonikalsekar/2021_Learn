@@ -1,0 +1,65 @@
+<body>
+    <script>
+        function sortControlsByWidth(element)
+        {
+            let children = element.children;
+            childrenLength = children.length;
+            let minVal = children[0].style.width;
+            for(i = 1; i < childrenLength; i++){
+
+                if(isGreaterPixel(minVal, children[i].style.width)){
+                    minVal = children[i].style.width;
+                    element.insertBefore(children[i], element.childNodes[0]);
+                }
+            }
+        }
+
+        function isGreaterPixel(i,j)
+        {
+            let intWidthArray =i.split("px");
+            let intWidth = intWidthArray[0];
+
+            let intWidthArray2 = j.split("px");
+            let intWidth2 = intWidthArray2[0];
+
+            if(intWidthArray > intWidthArray2)
+            {
+                return true;
+            }
+        }
+
+    </script>
+
+    <div id="shellDiv">
+
+        <input type="button" value="Click to Sort" id=shellSortBtn onClick="javascript:sortControlsByWidth(document.all.extensionDiv);"/>
+
+    </div>
+
+    <br><br><br>
+
+    <div id="extensionDiv" style="display:flex; flex-direction: column;">
+
+        <input type=text style="width: 70px;" id=input1/>
+
+        <input type=text style="width: 73px;" id=input2/>
+
+        <input type=text style="width: 65px;" id=input3/>
+
+        <input type=text style="width: 78px;" id=input4/>
+
+        <input type=text style="width: 89px;" id=input5/>
+
+        <input type=text style="width: 35px;" id=input6/>
+
+        <input type=text style="width: 27px;" id=input7/>
+
+        <input type=text style="width: 45px;" id=input8/>
+
+        <input type=text style="width: 68px;" id=input9/>
+
+        <input type=text style="width: 25px;" id=input10/>
+
+    </div>
+
+</body>
